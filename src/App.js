@@ -4,7 +4,6 @@ import "./App.css";
 import CitySearch from "./CitySearch";
 import EventList from "./EventList";
 import NumberOfEvents from "./NumberOfEvents";
-import updateEvents from "./updateEvents";
 class App extends Component {
   // componentDidMount
   componentDidMount() {
@@ -19,6 +18,18 @@ class App extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
+
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      const locationEvents =
+        location === "all"
+          ? events
+          : events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents,
+      });
+    });
+  };
 
   //states
   state = {
@@ -40,17 +51,5 @@ class App extends Component {
     );
   }
 }
-
-updateEvents = (location) => {
-  getEvents().then((events) => {
-    const locationEvents =
-      location === "all"
-        ? events
-        : events.filter((event) => event.location === location);
-    this.setState({
-      events: locationEvents,
-    });
-  });
-};
 
 export default App;
