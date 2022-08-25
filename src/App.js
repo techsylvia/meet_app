@@ -4,7 +4,7 @@ import "./App.css";
 import CitySearch from "./CitySearch";
 import EventList from "./EventList";
 import NumberOfEvents from "./NumberOfEvents";
-
+import updateEvents from "./updateEvents";
 class App extends Component {
   // componentDidMount
   componentDidMount() {
@@ -22,7 +22,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} />
+        <CitySearch
+          locations={this.state.locations}
+          updateEvents={this.updateEvents}
+        />
+
         <NumberOfEvents />
         <EventList events={this.state.events} />
       </div>
