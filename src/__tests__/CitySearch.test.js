@@ -7,6 +7,9 @@ import CitySearch from "../CitySearch";
 describe("<CitySearch /> component", () => {
   let CitySearchWrapper, locations;
   beforeAll(() => {
+    CitySearchWrapper = shallow(
+      <CitySearch locations={locations} updateEvents={() => {}} />
+    );
     locations = extractLocations(mockData);
     CitySearchWrapper = shallow(<CitySearch locations={locations} />);
   });
