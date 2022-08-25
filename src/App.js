@@ -8,9 +8,16 @@ import updateEvents from "./updateEvents";
 class App extends Component {
   // componentDidMount
   componentDidMount() {
+    this.mounted = true;
     getEvents().then((events) => {
-      this.setState({ events, locations: extractLocations(events) });
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   //states
@@ -36,9 +43,10 @@ class App extends Component {
 
 updateEvents = (location) => {
   getEvents().then((events) => {
-    const locationEvents = events.filter(
-      (event) => event.location === location
-    );
+    const locationEvents =
+      location === "all"
+        ? events
+        : events.filter((event) => event.location === location);
     this.setState({
       events: locationEvents,
     });
