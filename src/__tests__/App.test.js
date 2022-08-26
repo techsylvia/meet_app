@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import App from "../App";
 import EventList from "../EventList";
 import CitySearch from "../CitySearch";
@@ -25,7 +25,7 @@ describe("<App /> component", () => {
   });
 });
 
-descrbe(",App /> integration", () => {
+describe(",App /> integration", () => {
   test('App passes "events" state as a prop to EventList', () => {
     const AppWrapper = mount(<App />);
     const AppEventsState = AppWrapper.state("events");
