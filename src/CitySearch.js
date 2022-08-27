@@ -6,7 +6,7 @@ class CitySearch extends Component {
 
     this.state = {
       query: " search for a city",
-      onfocus: "this.value=''",
+      onfocus: "this.state =' '",
       suggestions: [],
       showSuggestions: undefined,
     };
@@ -34,7 +34,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <b></b>
+        <b>Search for a city </b>
         <input
           type="text"
           className="city"
