@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "googleapis": "59.0.0"
+    "bootstrap": "^5.2.0",
+    "googleapis": "59.0.0",
+    "react-bootstrap": "^2.5.0"
   }
 }
