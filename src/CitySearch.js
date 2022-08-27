@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
 
 class CitySearch extends Component {
   constructor() {
@@ -6,7 +7,6 @@ class CitySearch extends Component {
 
     this.state = {
       query: " search for a city",
-      onfocus: "this.state =' '",
       suggestions: [],
       showSuggestions: undefined,
     };
@@ -33,29 +33,31 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="CitySearch">
-        <b>Search for a city </b>
-        <input
-          type="text"
-          className="city"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-        />
-        <ul
-          className="suggestions"
-          style={this.state.showSuggestions ? {} : { display: "none" }}
-        >
-          {this.state.suggestions.map((suggestion) => (
-            <li
-              key={suggestion}
-              onClick={() => this.handleItemClicked(suggestion)}
-            >
-              {suggestion}
-            </li>
-          ))}
-          <li onClick={() => this.handleItemClicked("all")}></li>
-        </ul>
-      </div>
+      <Form>
+        <Form.Group className="mb-3">
+          <Form.Label>Search for a City</Form.Label>
+          <Form.Control
+            type="text"
+            className="city"
+            value={this.state.query}
+            onChange={this.handleInputChanged}
+          />
+          <ul
+            className="suggestions"
+            style={this.state.showSuggestions ? {} : { display: "none" }}
+          >
+            {this.state.suggestions.map((suggestion) => (
+              <li
+                key={suggestion}
+                onClick={() => this.handleItemClicked(suggestion)}
+              >
+                {suggestion}
+              </li>
+            ))}
+            <li onClick={() => this.handleItemClicked("all")}></li>
+          </ul>
+        </Form.Group>
+      </Form>
     );
   }
 }
