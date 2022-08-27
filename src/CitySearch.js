@@ -6,7 +6,7 @@ class CitySearch extends Component {
     super();
 
     this.state = {
-      query: " search for a city",
+      query: " search for a city ",
       suggestions: [],
       showSuggestions: undefined,
     };
@@ -35,7 +35,7 @@ class CitySearch extends Component {
     return (
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>Search for a City</Form.Label>
+          <Form.Label> Search for a City </Form.Label>
           <Form.Control
             type="text"
             className="city"

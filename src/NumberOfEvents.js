@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
 
 export class NumberOfEvents extends Component {
   handleInputChanged = (event) => {
@@ -8,17 +9,18 @@ export class NumberOfEvents extends Component {
   state = { numOfEvents: 32 };
   render() {
     return (
-      <div className="numberOfEvents">
-        <label>
-          Number of Events:
-          <input
+      <Form>
+        <Form.Group className="mb-3">
+          <Form.Label>Number of Events:</Form.Label>
+
+          <Form.Control
             type="number"
             className="number-input"
             value={this.state.numOfEvents}
             onChange={this.handleInputChanged}
           />
-        </label>
-      </div>
+        </Form.Group>
+      </Form>
     );
   }
 }

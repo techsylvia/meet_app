@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class Event extends Component {
   toggleEventDetails = () => {
@@ -14,8 +15,12 @@ class Event extends Component {
         <div className="event">
           <h1 className="event-summary-title">{event.summary}</h1>
           <p className="event-info">
-            {event.start.dateTime} {event.start.timeZone} {event.location}
+            <h4>⏰ Timezone</h4>
+            {event.start.dateTime} {event.start.timeZone}
           </p>
+          <h4>📍 Location</h4>
+          <p className="event-location">{event.location}</p>
+
           {this.state.show && (
             <>
               <h2 className="event-about-title">About event:</h2>
