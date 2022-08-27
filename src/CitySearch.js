@@ -6,6 +6,7 @@ class CitySearch extends Component {
 
     this.state = {
       query: " search for a city",
+      onfocus: "this.value=''",
       suggestions: [],
       showSuggestions: undefined,
     };
