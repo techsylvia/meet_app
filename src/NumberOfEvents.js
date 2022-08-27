@@ -12,7 +12,6 @@ export class NumberOfEvents extends Component {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Number of Events:</Form.Label>
-
           <Form.Control
             type="number"
             className="number-input"
