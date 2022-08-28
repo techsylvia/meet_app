@@ -36,7 +36,9 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".event-info").text()).toContain(
       event.start.timeZone
     );
-    expect(EventWrapper.find(".event-info").text()).toContain(event.location);
+    expect(EventWrapper.find(".event-info").text()).toContain(
+      "⏰ Timezone2020-05-20T14:00:00+02:00 Europe/Berlin"
+    );
   });
 
   test("render event collapsed by default", () => {
