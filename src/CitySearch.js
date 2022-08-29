@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
 
 class CitySearch extends Component {
   constructor() {
     super();
 
     this.state = {
-      query: " search for a city ",
+      query: "",
       suggestions: [],
       showSuggestions: undefined,
     };
@@ -34,18 +33,16 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label> Search for a City </Form.Label>
-          <Form.Control
+      <div>
+        <div className="CitySearch">
+          <p>Type a City 👇🏼 </p>
+          <input
             type="text"
+            id="city"
+            placeholder="Select city:"
             className="city"
             value={this.state.query}
             onChange={this.handleInputChanged}
-            placeholder="Enter a City"
-            onFocus={() => {
-              this.setState({ showSuggestions: true });
-            }}
           />
           <ul
             className="suggestions"
@@ -53,22 +50,19 @@ class CitySearch extends Component {
           >
             {this.state.suggestions.map((suggestion) => (
               <li
+                className="suggestions-item"
                 key={suggestion}
                 onClick={() => this.handleItemClicked(suggestion)}
               >
                 {suggestion}
               </li>
             ))}
-            <li
-              className="suggestions-all"
-              key="all"
-              onClick={() => this.handleItemClicked("all")}
-            >
+            <li onClick={() => this.handleItemClicked("all")}>
               <b>See all cities</b>
             </li>
           </ul>
-        </Form.Group>
-      </Form>
+        </div>
+      </div>
     );
   }
 }

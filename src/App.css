@@ -69,6 +69,7 @@ input[type="number"] {
 
 .city {
   width: 300px;
+  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .CitySearch {
@@ -80,13 +81,18 @@ input[type="number"] {
   position: relative;
 }
 
+.number-input {
+  width: 200px;
+  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+}
+
 .suggestions {
   width: 250px;
   position: absolute;
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 43px;
+  top: 110px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -104,7 +110,7 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: #c4c1e0;
 }
 
 .event {
