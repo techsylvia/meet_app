@@ -7,11 +7,10 @@ import CitySearch from "../CitySearch";
 describe("<CitySearch /> component", () => {
   let CitySearchWrapper, locations;
   beforeAll(() => {
+    locations = extractLocations(mockData);
     CitySearchWrapper = shallow(
       <CitySearch locations={locations} updateEvents={() => {}} />
     );
-    locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
   });
   test("render text input", () => {
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
@@ -72,6 +71,12 @@ describe("<CitySearch /> component", () => {
 
   test("selecting CitySearch input reveals the suggestions list", () => {
     CitySearchWrapper.find(".city").simulate("focus");
+    CitySearchWrapper.find(".city").simulate("change", {
+      target: { value: "Berlin" },
+    });
+    // CitySearchWrapper.setState({
+    //   query: "Berlin",
+    // });
     expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
     expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({
       display: "none",
