@@ -42,6 +42,10 @@ class CitySearch extends Component {
             className="city"
             value={this.state.query}
             onChange={this.handleInputChanged}
+            placeholder="Enter a City"
+            onFocus={() => {
+              this.setState({ showSuggestions: true });
+            }}
           />
           <ul
             className="suggestions"
@@ -55,7 +59,13 @@ class CitySearch extends Component {
                 {suggestion}
               </li>
             ))}
-            <li onClick={() => this.handleItemClicked("all")}></li>
+            <li
+              className="suggestions-all"
+              key="all"
+              onClick={() => this.handleItemClicked("all")}
+            >
+              <b>See all cities</b>
+            </li>
           </ul>
         </Form.Group>
       </Form>
