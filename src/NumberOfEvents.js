@@ -11,7 +11,7 @@ export class NumberOfEvents extends Component {
     return (
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>Number of Events:</Form.Label>
+          <p>How many Events ❓ </p>
           <Form.Control
             type="number"
             className="number-input"
