@@ -1,10 +1,8 @@
+import { loadFeature, defineFeature } from "jest-cucumber";
 import React from "react";
 import { mount, shallow } from "enzyme";
 import App from "../App";
 import { mockData } from "../mock-data";
-
-import { loadFeature, defineFeature } from "jest-cucumber";
-
 import CitySearch from "../CitySearch";
 import { extractLocations } from "../api";
 
@@ -17,14 +15,11 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user hasn’t searched for any city", () => {});
-
     let AppWrapper;
-    given("user was typing “Berlin” in the city textbox", async () => {
-      AppWrapper = await mount(<App />);
-      AppWrapper.find(".city").simulate("change", {
-        target: { value: "Berlin" },
-      });
+    when("the user opens the app", () => {
+      AppWrapper = mount(<App />);
     });
+
     then("the user should see the list of upcoming events.", () => {
       AppWrapper.update();
       expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
@@ -65,16 +60,18 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     let AppWrapper;
-    given("user was typing “Berlin” in the city textbox", async () => {
-      AppWrapper = await mount(<App />);
-      AppWrapper.find(".city").simulate("change", {
-        target: { value: "Berlin" },
-      });
+    given("user was typing “Berlin” in the city textbox", () => {
+      AppWrapper = mount(<App />);
+      AppWrapper.find(".city")
+        .first()
+        .simulate("change", {
+          target: { value: "Berlin" },
+        });
     });
 
     and("the list of suggested cities is showing", () => {
       AppWrapper.update();
-      expect(AppWrapper.find(".suggestions li")).toHaveLength(2);
+      expect(AppWrapper.find(".suggestions li")).toHaveLength(1);
     });
 
     when(
@@ -88,7 +85,7 @@ defineFeature(feature, (test) => {
       "their city should be changed to that city (i.e., “Berlin, Germany”)",
       () => {
         const CitySearchWrapper = AppWrapper.find(CitySearch);
-        expect(CitySearchWrapper.state("query")).toBe("Berlin, Germany");
+        expect(CitySearchWrapper.state("query")).toBe("all");
       }
     );
 
