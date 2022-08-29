@@ -5,7 +5,7 @@ class CitySearch extends Component {
     super();
 
     this.state = {
-      query: " search for a city ",
+      query: "",
       suggestions: [],
       showSuggestions: undefined,
     };
