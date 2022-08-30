@@ -28,6 +28,7 @@ class App extends Component {
           : events.filter((event) => event.location === location);
       this.setState({
         events: locationEvents,
+        numOfEvents: locationEvents.length,
       });
     });
   };
@@ -36,6 +37,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
+    numOfEvents: 32,
   };
 
   render() {
