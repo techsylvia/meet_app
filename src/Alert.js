@@ -82,4 +82,4 @@ class ErrorAlert extends Component {
   }
 }
 
-export { InfoAlert };
+export default InfoAlert;
