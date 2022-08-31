@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
+import { ErrorAlert } from "./Alert";
 
 export class NumberOfEvents extends Component {
   handleInputChanged = (event) => {
@@ -19,6 +20,9 @@ export class NumberOfEvents extends Component {
             onChange={this.handleInputChanged}
           />
         </Form.Group>
+        <div>
+          <ErrorAlert text={this.state.infoText} />
+        </div>
       </Form>
     );
   }
