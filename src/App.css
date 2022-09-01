@@ -81,9 +81,18 @@ input[type="number"] {
   position: relative;
 }
 
+.Alert {
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+}
 .number-input {
   width: 200px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+}
+
+.AlertMessage {
+  padding-top: 5%;
 }
 
 .suggestions {

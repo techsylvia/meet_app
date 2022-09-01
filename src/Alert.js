@@ -75,8 +75,8 @@ class ErrorAlert extends Component {
 
   render() {
     return (
-      <div className="Alert">
-        <p style={this.getStyle()}>{this.props.text}</p>
+      <div className="Alert-Wrapper">
+        <h5 style={this.getStyle()}>{this.props.text}</h5>
       </div>
     );
   }
