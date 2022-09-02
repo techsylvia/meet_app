@@ -23,6 +23,7 @@ class CitySearch extends Component {
         infoText: "This city is not available. Please try another city",
       });
     } else {
+      this.props.updateEvents(value);
       return this.setState({
         query: value,
         suggestions,

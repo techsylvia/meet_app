@@ -25,7 +25,7 @@ class App extends Component {
       const locationEvents =
         location === "all"
           ? events
-          : events.filter((event) => event.location === location);
+          : events.filter((event) => event.location.includes(location));
       this.setState({
         events: locationEvents,
         numOfEvents: locationEvents.length,
