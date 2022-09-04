@@ -20,7 +20,7 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
-        infoText: "This city is not available. Please try another city",
+        infoText: "City not available. Please try another city",
       });
     } else {
       this.props.updateEvents(value);

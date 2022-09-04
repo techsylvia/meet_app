@@ -175,11 +175,6 @@ input[type="number"] {
   background-color: #7c73e6;
 }
 
-.Alert {
-  position: fixed;
-  top: 20px;
-}
-
 .data-vis-wrapper {
   display: flex;
   align-items: center;
