@@ -14,8 +14,8 @@ class Event extends Component {
       <>
         <div className="event">
           <h1 className="event-summary-title">{event.summary}</h1>
+          <h4>⏰ Timezone</h4>
           <p className="event-info">
-            <h4>⏰ Timezone</h4>
             {event.start.dateTime} {event.start.timeZone}
           </p>
           <h4>📍 Location</h4>
