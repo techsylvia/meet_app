@@ -11,6 +11,7 @@ import {
   XAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
 class App extends Component {
@@ -48,6 +49,18 @@ class App extends Component {
     numOfEvents: 32,
   };
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(", ").shift();
+      return { city, number };
+    });
+    return data;
+  };
+
   render() {
     return (
       <div className="App">
@@ -58,27 +71,28 @@ class App extends Component {
         />
 
         <NumberOfEvents />
-        <ScatterChart
-          width={400}
-          height={400}
-          margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20,
-          }}
-        >
-          <CartesianGrid />
-          <XAxis type="category" dataKey="city" name="city" unit="cm" />
-          <YAxis
-            type="number"
-            dataKey="number"
-            name="number of eventst"
-            unit="kg"
-          />
-          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-          <Scatter name="A school" data={this.getData()} fill="#8884d8" />
-        </ScatterChart>
+        <ResponsiveContainer height={400}>
+          <ScatterChart
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid />
+            <XAxis type="category" dataKey="city" name="city" />
+            <YAxis
+              type="number"
+              dataKey="number"
+              name="number of eventst"
+              unit="kg"
+              allowDecimals={false}
+            />
+            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+            <Scatter name="A school" data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
+        </ResponsiveContainer>
 
         <EventList events={this.state.events} />
       </div>
