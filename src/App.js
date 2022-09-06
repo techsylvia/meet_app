@@ -4,6 +4,7 @@ import "./App.css";
 import CitySearch from "./CitySearch";
 import EventList from "./EventList";
 import NumberOfEvents from "./NumberOfEvents";
+import EventGenre from "./Eventgenre";
 import {
   ScatterChart,
   Scatter,
@@ -15,6 +16,14 @@ import {
 } from "recharts";
 
 class App extends Component {
+  //states
+  state = {
+    events: [],
+    locations: [],
+    numOfEvents: 32,
+    selectedLocation: "all",
+  };
+
   // componentDidMount
   componentDidMount() {
     this.mounted = true;
@@ -29,39 +38,43 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    console.log(location);
+    if (eventCount === undefined) {
+      eventCount = this.state.numOfEvents;
+    } else this.setState({ numOfEvents: eventCount });
+    if (location === undefined) {
+      location = this.state.selectedLocation;
+    }
     getEvents().then((events) => {
       const locationEvents =
         location === "all"
           ? events
-          : events.filter((event) => event.location.includes(location));
-      this.setState({
-        events: locationEvents,
-        numOfEvents: locationEvents.length,
-      });
+          : events.filter((event) => event.location === location);
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents.slice(0, eventCount),
+          numOfEvents: eventCount,
+          selectedLocation: location,
+        });
+      }
     });
-  };
-
-  //states
-  state = {
-    events: [],
-    locations: [],
-    numOfEvents: 32,
   };
 
   getData = () => {
     const { locations, events } = this.state;
-    const data = locations.map((location) => {
+    return locations.map((location) => {
       const number = events.filter(
         (event) => event.location === location
       ).length;
-      const city = location.split(", ").shift();
+      const city = location.split(", ")[0];
       return { city, number };
     });
-    return data;
   };
 
   render() {
+    const { events } = this.state;
+
     return (
       <div className="App">
         <h1>Meet App</h1>
@@ -70,29 +83,33 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
 
-        <NumberOfEvents />
-        <ResponsiveContainer height={400}>
-          <ScatterChart
-            margin={{
-              top: 20,
-              right: 20,
-              bottom: 20,
-              left: 20,
-            }}
-          >
-            <CartesianGrid />
-            <XAxis type="category" dataKey="city" name="city" />
-            <YAxis
-              type="number"
-              dataKey="number"
-              name="number of eventst"
-              unit="kg"
-              allowDecimals={false}
-            />
-            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-            <Scatter name="A school" data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
+        <NumberOfEvents updateEvents={this.updateEvents} />
+
+        <div className="data-vis-wrapper">
+          <EventGenre events={events} />
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
+              <CartesianGrid className="grid" />
+              <XAxis
+                type="category"
+                dataKey="city"
+                name="city"
+                tickMargin="5"
+                tick={{ fontSize: "13px", fill: "#2F5373" }}
+                textAnchor="end"
+              />
+              <YAxis
+                type="number"
+                dataKey="number"
+                tick={{ fontSize: "14px", fill: "#2F5373" }}
+                name="number of events"
+                allowDecimals={false}
+              />
+              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+              <Scatter data={this.getData()} fill="black" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
 
         <EventList events={this.state.events} />
       </div>

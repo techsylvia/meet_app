@@ -5,7 +5,7 @@ import "./App.css";
 
 export class NumberOfEvents extends Component {
   state = {
-    numberOfEvents: 32,
+    numOfEvents: 32,
     infoText: "",
   };
 
@@ -18,7 +18,7 @@ export class NumberOfEvents extends Component {
       });
     } else {
       this.setState({
-        numberOfEvents: event.target.value,
+        numOfEvents: value,
         infoText: " ",
       });
     }
