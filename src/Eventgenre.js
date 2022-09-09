@@ -73,8 +73,8 @@ const EventGenre = ({ events }) => {
           label={renderCustomizedLabel}
           cx={"50%"}
           cy={"50%"}
-          innerRadius={50}
-          outerRadius={"200%"}
+          innerRadius={20}
+          outerRadius={"110%"}
           fill="#fff"
           stroke="black"
           dataKey="value"

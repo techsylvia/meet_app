@@ -39,7 +39,6 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
-    console.log(location);
     if (eventCount === undefined) {
       eventCount = this.state.numOfEvents;
     } else this.setState({ numOfEvents: eventCount });
@@ -87,7 +86,7 @@ class App extends Component {
 
         <div className="data-vis-wrapper">
           <EventGenre events={events} />
-          <ResponsiveContainer height={400}>
+          <ResponsiveContainer height={300}>
             <ScatterChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
               <CartesianGrid className="grid" />
               <XAxis
