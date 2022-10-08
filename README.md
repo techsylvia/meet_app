@@ -80,3 +80,11 @@ As a user I would like to see charts with the number of upcoming events in my ci
 - When: the user clicks on the city’s upcoming events button. <br>
 - Then: a chart will list the upcoming events taking place in the city. 
 
+
+
+
+
+https://user-images.githubusercontent.com/67543909/194705089-07bad478-4141-44c3-b2df-bc796091a93c.mov
+
+
+
